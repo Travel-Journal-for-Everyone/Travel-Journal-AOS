@@ -31,12 +31,6 @@ jobs:
       # 작성된 Unit Test를 실행해서 검사
     - name: Run Unit Test
       run: ./gradlew test
-      # 작성된 Android Test를 실행해서 검사
-
-      # 전체 빌드는 오래걸리므로 apk만 추출
-    - name: Assemble
-      run: ./gradlew asssemble
-
 
       # Debug apk를 업로드해서 다운
     - name: Upload Debug APK
