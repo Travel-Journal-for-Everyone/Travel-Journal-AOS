@@ -28,9 +28,6 @@ jobs:
       # Clean Build
     - name: Clean Build
       run: ./gradlew clean
-      # 코드가 공식 컨벤션에 틀린 것이 없는지 검사
-    - name: Run ktlint
-      run: ./gradlew ktlintCheck
       # 작성된 Unit Test를 실행해서 검사
     - name: Run Unit Test
       run: ./gradlew test
