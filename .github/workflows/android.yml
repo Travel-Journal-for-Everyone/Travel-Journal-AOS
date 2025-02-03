@@ -1,0 +1,32 @@
+name: Android CI
+
+# 해당 코드는 main 브랜치에 push 또는 PR 이벤트가 발생하면 CI/CD를 실행하도록 지정해준다
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Jobs는 실행할 작업을 정리해준다. 
+jobs:
+  build:
+    # 빌드 작업이 실행될 환경을 정의함
+    # 최신 버전의 Ubuntu 환경(Default)를 지정
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
+    - name: hello world
+      run: echo "Hello World!, This is Travel Journal for everyone"
+    
