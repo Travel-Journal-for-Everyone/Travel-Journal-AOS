@@ -25,8 +25,34 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
-    - name: hello world
-      run: echo "Hello World!, This is Travel Journal for everyone"
+      # Clean Build
+    - name: Clean Build
+      run: ./gradlew clean
+      # 코드가 공식 컨벤션에 틀린 것이 없는지 검사
+    - name: Run ktlint
+      run: ./gradlew ktlintCheck
+      # 작성된 Unit Test를 실행해서 검사
+    - name: Run Unit Test
+      run: ./gradlew test
+      # 작성된 Android Test를 실행해서 검사
+
+      # 전체 빌드는 오래걸리므로 apk만 추출
+    - name: Assemble
+      run: ./gradlew asssemble
+
+
+      # Debug apk를 업로드해서 다운
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: debug
+        path: ./app/build/outputs/apk/debug/app-debug.apk
+      
+      # Release apk를 업로드해서 다운
+    - name: Upload Release APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: release
+        path: ./app/build/outputs/apk/release/app-release-unsigned.apk
+     
     
