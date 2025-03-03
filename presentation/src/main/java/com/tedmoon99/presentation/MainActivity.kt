@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.tedmoon99.presentation.navigation.MainNavigation
-import com.tedmoon99.presentation.theme.TravelJournalForEveryoneTheme
+import com.tedmoon99.presentation.ui.common.theme.TravelJournalForEveryoneTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

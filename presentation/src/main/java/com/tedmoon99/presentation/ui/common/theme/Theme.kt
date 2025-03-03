@@ -1,4 +1,4 @@
-package com.tedmoon99.presentation.theme
+package com.tedmoon99.presentation.ui.common.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
