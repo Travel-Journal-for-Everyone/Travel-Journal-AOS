@@ -69,4 +69,7 @@ dependencies {
     implementation(project(":data"))
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+    implementation(libs.retrofit)
+    implementation(libs.squareup.converter.gson)
+    implementation(libs.okhttp3.logging.interceptor)
 }
