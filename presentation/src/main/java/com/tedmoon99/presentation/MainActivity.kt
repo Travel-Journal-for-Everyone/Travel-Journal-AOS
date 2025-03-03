@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.tedmoon99.presentation.navigation.MainNavigation
-import com.tedmoon99.presentation.theme.TraveJournalForEveryoneTheme
+import com.tedmoon99.presentation.theme.TravelJournalForEveryoneTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TraveJournalForEveryoneTheme {
+            TravelJournalForEveryoneTheme {
                 MainNavigation()
             }
         }
