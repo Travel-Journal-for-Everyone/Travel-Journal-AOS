@@ -1,11 +1,11 @@
 name: Android CI
 
-# 해당 코드는 main 브랜치에 push 또는 PR 이벤트가 발생하면 CI/CD를 실행하도록 지정해준다
+# 해당 코드는 develop 브랜치에 push 또는 PR 이벤트가 발생하면 CI/CD를 실행하도록 지정해준다
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "develop" ]
 
 # Jobs는 실행할 작업을 정리해준다. 
 jobs:
