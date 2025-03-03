@@ -1,4 +1,4 @@
-package com.tedmoon99.presentation.navigation
+package com.tedmoon99.presentation.ui.common.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
