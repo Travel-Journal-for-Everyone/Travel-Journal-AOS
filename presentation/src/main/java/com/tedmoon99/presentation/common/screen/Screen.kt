@@ -1,4 +1,4 @@
-package com.tedmoon99.presentation.ui.common.screen
+package com.tedmoon99.presentation.common.screen
 
 sealed class Screen(
     val route: String,

@@ -1,4 +1,4 @@
-package com.tedmoon99.presentation.ui.common.theme
+package com.tedmoon99.presentation.common.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
