@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.tedmoon99.presentation.ui.screens.HomeScreen
+import com.tedmoon99.presentation.home.HomeScreen
 import com.tedmoon99.presentation.ui.common.screen.Screen
 
 @Composable
