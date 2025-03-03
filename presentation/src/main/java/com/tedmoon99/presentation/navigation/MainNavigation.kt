@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.tedmoon99.presentation.ui.screens.HomeScreen
-import com.tedmoon99.presentation.util.Screen
+import com.tedmoon99.presentation.ui.common.screen.Screen
 
 @Composable
 fun MainNavigation() {
