@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.multibindings.IntoSet
 import okhttp3.Authenticator
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -21,6 +22,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @IntoSet
     fun provideLoggingInterceptor(): Interceptor{
         return LoggingInterceptor()
     }
@@ -30,14 +32,12 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideBaseClient(
-        loggingInterceptor: Interceptor,
-        tokenInterceptor: Interceptor,
+        interceptors: Set<@JvmSuppressWildcards Interceptor>,
         tokenAuthenticator: Authenticator
     ): OkHttpClient {
         return OkHttpClient
             .Builder().run {
-                addInterceptor(loggingInterceptor)
-                addInterceptor(tokenInterceptor)
+                interceptors.forEach { addInterceptor(it) }
                 authenticator(tokenAuthenticator)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
                 readTimeout(30, TimeUnit.SECONDS) // 서버 응답 대기 시간
@@ -53,14 +53,12 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthClient(
-        loggingInterceptor: Interceptor,
-        tokenInterceptor: Interceptor,
+        interceptors: Set<@JvmSuppressWildcards Interceptor>,
         tokenAuthenticator: Authenticator
     ): OkHttpClient {
         return OkHttpClient
             .Builder().run {
-                addInterceptor(loggingInterceptor)
-                addInterceptor(tokenInterceptor)
+                interceptors.forEach { addInterceptor(it) }
                 authenticator(tokenAuthenticator)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
                 readTimeout(30, TimeUnit.SECONDS) // 서버 응답 대기 시간
