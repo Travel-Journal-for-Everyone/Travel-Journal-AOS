@@ -1,6 +1,7 @@
 package com.tedmoon99.trave_journal_for_everyone.di
 
 import com.tedmoon99.data.BuildConfig.BASE_URL
+import com.tedmoon99.data.token.datasource.LoggingInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,16 +19,24 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    @Provides
+    @Singleton
+    fun provideLoggingInterceptor(): Interceptor{
+        return LoggingInterceptor()
+    }
+
     // Auth 인증 필요O API
     @BaseClient
     @Provides
     @Singleton
     fun provideBaseClient(
+        loggingInterceptor: Interceptor,
         tokenInterceptor: Interceptor,
         tokenAuthenticator: Authenticator
     ): OkHttpClient {
         return OkHttpClient
             .Builder().run {
+                addInterceptor(loggingInterceptor)
                 addInterceptor(tokenInterceptor)
                 authenticator(tokenAuthenticator)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
@@ -44,11 +53,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthClient(
+        loggingInterceptor: Interceptor,
         tokenInterceptor: Interceptor,
         tokenAuthenticator: Authenticator
     ): OkHttpClient {
         return OkHttpClient
             .Builder().run {
+                addInterceptor(loggingInterceptor)
                 addInterceptor(tokenInterceptor)
                 authenticator(tokenAuthenticator)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
