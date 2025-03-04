@@ -18,7 +18,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.tedmoon99.trave_journal_for_everyone.common.CustomTestRunner"
     }
 
     buildTypes {
@@ -46,6 +46,7 @@ dependencies {
 
     // testImplementation
     testImplementation(libs.junit)
+    testImplementation(libs.mockwebserver)
 
     // androidTestImplementation
     androidTestImplementation(libs.androidx.junit)
@@ -54,6 +55,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.mockwebserver)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+    kspAndroidTest(libs.hilt.compiler)
 
     // Implementation
     implementation(libs.androidx.core.ktx)
