@@ -52,6 +52,7 @@ dependencies {
     // androidTestImplementation
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.runner)
 
     // implementation
     implementation(libs.androidx.core.ktx)
@@ -65,4 +66,5 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.squareup.converter.gson)
     implementation(libs.okhttp3.logging.interceptor)
+    implementation(libs.androidx.junit.ktx)
 }

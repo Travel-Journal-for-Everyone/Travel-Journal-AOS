@@ -1,4 +1,4 @@
-package com.tedmoon99.trave_journal_for_everyone.di
+package com.tedmoon99.trave_journal_for_everyone.network
 
 import com.tedmoon99.data.BuildConfig.BASE_URL
 import com.tedmoon99.data.token.datasource.LoggingInterceptor
@@ -6,8 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.IntoSet
-import okhttp3.Authenticator
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -18,12 +16,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object TestNetworkModule {
 
     @Provides
     @Singleton
-    @IntoSet
-    fun provideLoggingInterceptor(): Interceptor{
+    fun provideLoggingInterceptor(): Interceptor {
         return LoggingInterceptor()
     }
 
@@ -32,13 +29,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideBaseClient(
-        interceptors: Set<@JvmSuppressWildcards Interceptor>,
-        tokenAuthenticator: Authenticator
+        loggingInterceptor: Interceptor,
     ): OkHttpClient {
         return OkHttpClient
             .Builder().run {
-                interceptors.forEach { addInterceptor(it) }
-                authenticator(tokenAuthenticator)
+                addInterceptor(loggingInterceptor)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
                 readTimeout(30, TimeUnit.SECONDS) // 서버 응답 대기 시간
                 writeTimeout(30, TimeUnit.SECONDS) // 요청 데이터 전송 시간
@@ -53,13 +48,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthClient(
-        interceptors: Set<@JvmSuppressWildcards Interceptor>,
-        tokenAuthenticator: Authenticator
+        loggingInterceptor: Interceptor,
     ): OkHttpClient {
         return OkHttpClient
             .Builder().run {
-                interceptors.forEach { addInterceptor(it) }
-                authenticator(tokenAuthenticator)
+                addInterceptor(loggingInterceptor)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
                 readTimeout(30, TimeUnit.SECONDS) // 서버 응답 대기 시간
                 writeTimeout(30, TimeUnit.SECONDS) // 요청 데이터 전송 시간
