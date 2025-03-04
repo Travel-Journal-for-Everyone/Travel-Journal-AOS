@@ -78,4 +78,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.squareup.converter.gson)
     implementation(libs.okhttp3.logging.interceptor)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences.core)
 }
