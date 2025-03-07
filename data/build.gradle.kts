@@ -67,4 +67,5 @@ dependencies {
     implementation(libs.squareup.converter.gson)
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.androidx.junit.ktx)
+    implementation("com.kakao.sdk:v2-all:2.20.6") // 전체 모듈 설치 (로그인, 공유, 메시지, 피커, 내비, 인증)
 }
