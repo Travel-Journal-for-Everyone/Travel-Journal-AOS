@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -11,6 +14,17 @@ android {
     namespace = "com.tedmoon99.trave_journal_for_everyone"
     compileSdk = 35
 
+    // local.properties 파일을 직접 로드
+    val localProperties = Properties().apply {
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            load(FileInputStream(localPropertiesFile))
+        }
+    }
+
+    // kakaoNativeAppKey 추출
+    val kakaoNativeAppKey: String = localProperties.getProperty("kakao_native_app_key", "")
+
     defaultConfig {
         applicationId = "com.tedmoon99.trave_journal_for_everyone"
         minSdk = 24
@@ -19,15 +33,20 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "com.tedmoon99.trave_journal_for_everyone.common.CustomTestRunner"
+        manifestPlaceholders["KAKAO_NATIVE_KEY"] = kakaoNativeAppKey
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "KAKAO_NATIVE_KEY", "\"$kakaoNativeAppKey\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "KAKAO_NATIVE_KEY", "\"$kakaoNativeAppKey\"")
         }
     }
     compileOptions {
@@ -39,6 +58,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -80,4 +100,5 @@ dependencies {
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore.preferences.core)
+    implementation("com.kakao.sdk:v2-all:2.20.6") // 전체 모듈 설치 (로그인, 공유, 메시지, 피커, 내비, 인증)
 }
