@@ -129,13 +129,8 @@ class KakaoRepositoryImpl @Inject constructor(
     private suspend fun sendSignInRequest(token: OAuthToken): KakaoSignInResult {
 
         val kakaoIdToken = token.idToken ?: ""
-        Log.d(TAG, "카카오에서 받아온 idToken: $kakaoIdToken")
-        tokenRepository.setAccessToken(kakaoIdToken)
         // 서버에 카카오에서 받아온 deviceId 전달
-        val response = kakaoService.requestKakaoSignIn(
-            socialProvider = KakaoSocialProvider,
-            deviceId = null
-        )
+        val response = kakaoService.requestKakaoSignIn(deviceId = kakaoIdToken)
 
         return if (response.isSuccessful && response.code() == 200) {
 
@@ -167,6 +162,5 @@ class KakaoRepositoryImpl @Inject constructor(
 
     companion object {
         private const val TAG = "KakaoRepositoryImpl"
-        private const val KakaoSocialProvider = "kakao"
     }
 }
