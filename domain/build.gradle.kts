@@ -16,6 +16,8 @@ kotlin {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:1.15.0")
+
     // Dagger Core (순수 Kotlin 모듈에서 Dagger 사용)
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
