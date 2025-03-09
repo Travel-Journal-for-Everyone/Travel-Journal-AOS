@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Trave-Journal-For-Everyone</string>
+    <string name="kakao_login">카카오로 로그인</string>
 </resources>

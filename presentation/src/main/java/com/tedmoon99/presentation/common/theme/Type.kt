@@ -22,7 +22,7 @@ val Typography = Typography(
         fontFamily = Pretendard,
         fontWeight = FontWeight.SemiBold,
         fontSize = 24.sp,
-        lineHeight = 24.sp,
+        lineHeight = 36.sp,
         letterSpacing = 0.5.sp
     ),
 
