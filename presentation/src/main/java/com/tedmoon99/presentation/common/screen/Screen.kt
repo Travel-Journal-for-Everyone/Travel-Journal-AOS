@@ -5,4 +5,6 @@ sealed class Screen(
 ){
     data object Home: Screen("Home")
 
+    data object LogIn: Screen("LogIn")
+
 }
