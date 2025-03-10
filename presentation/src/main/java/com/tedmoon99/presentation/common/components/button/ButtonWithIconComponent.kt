@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.dp
 fun ButtonWithIconComponent(
     @DrawableRes icon: Int,
     @StringRes label: Int,
-    @ColorRes containerColor: Color,
-    @ColorRes contentColor: Color,
-    @ColorRes iconColor: Color,
+    containerColor: Color,
+    contentColor: Color,
+    iconColor: Color,
     buttonShape: RoundedCornerShape,
     enabled: Boolean,
     modifier: Modifier = Modifier,
