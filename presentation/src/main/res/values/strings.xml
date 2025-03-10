@@ -1,12 +1,4 @@
 <resources>
     <string name="app_name">Trave-Journal-For-Everyone</string>
     <string name="message_login">%s로 로그인</string>
-    <string name="topbar_image_leadingIcon">Leading Icon</string>
-    <string name="topbar_image_trailingIcon">Trailing Icon</string>
-    <string name="label_write_complete">작성 완료</string>
-    <string name="label_welcome">모두의 여행 시작하기</string>
-    <string name="label_double_check">중복 확인</string>
-    <string name="placeholder_input">%s을 입력하세요</string>
-    <string name="error_message_name_input">한글로 2자~12자</string>
-    <string name="error_message_name_check">이미 사용중인 이름입니다</string>
 </resources>
