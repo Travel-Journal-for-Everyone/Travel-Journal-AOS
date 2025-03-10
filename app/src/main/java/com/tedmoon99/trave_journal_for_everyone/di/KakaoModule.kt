@@ -29,11 +29,11 @@ object KakaoModule {
     @Singleton
     fun provideKakaoRepository(
         @ApplicationContext context: Context,
-        kakoService: KakaoService,
+        kakaoService: KakaoService,
         tokenRepository: TokenRepository,
         memberRepository: MemberRepository,
     ): KakaoRepository {
-        return KakaoRepositoryImpl(context, kakoService, tokenRepository, memberRepository)
+        return KakaoRepositoryImpl(context, kakaoService, tokenRepository, memberRepository)
     }
 
     @Provides
