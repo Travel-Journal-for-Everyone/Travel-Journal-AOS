@@ -13,11 +13,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,40 +31,13 @@ import com.tedmoon99.presentation.common.theme.Black
 import com.tedmoon99.presentation.common.theme.Gray05
 import com.tedmoon99.presentation.common.theme.Kakao_Yellow
 import com.tedmoon99.presentation.common.theme.White
-import com.tedmoon99.presentation.log_in.LogInContract
 import com.tedmoon99.presentation.log_in.viewmodel.LogInViewModel
 
 @Composable
 fun LogInScreen(
-    hostState: SnackbarHostState,
     viewModel: LogInViewModel = hiltViewModel(),
-    navigateToWriteProfile: () -> Unit,
-    navigateToHome: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val effectFlow = viewModel.effect
-
-    LaunchedEffect(Unit) {
-        effectFlow.collect { effect ->
-            when (effect) {
-                is LogInContract.Effect.NavigateToHome -> {
-                    navigateToHome()
-                }
-
-                is LogInContract.Effect.NavigateToWriteProfile -> {
-                    navigateToWriteProfile()
-                }
-
-                is LogInContract.Effect.ShowErrorMessage -> {
-                    hostState.showSnackbar(
-                        message = "로그인 실패. 관리자에게 문의하세요",
-                        withDismissAction = true,
-                        duration = SnackbarDuration.Short
-                    )
-                }
-            }
-        }
-    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
