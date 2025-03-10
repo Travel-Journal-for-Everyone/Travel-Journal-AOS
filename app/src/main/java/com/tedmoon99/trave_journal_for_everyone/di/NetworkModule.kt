@@ -54,12 +54,10 @@ object NetworkModule {
     @Singleton
     fun provideAuthClient(
         interceptors: Set<@JvmSuppressWildcards Interceptor>,
-        tokenAuthenticator: Authenticator
     ): OkHttpClient {
         return OkHttpClient
             .Builder().run {
                 interceptors.forEach { addInterceptor(it) }
-                authenticator(tokenAuthenticator)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
                 readTimeout(30, TimeUnit.SECONDS) // 서버 응답 대기 시간
                 writeTimeout(30, TimeUnit.SECONDS) // 요청 데이터 전송 시간
