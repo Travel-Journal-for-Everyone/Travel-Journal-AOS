@@ -6,6 +6,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,7 +26,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ButtonWithIconComponent(
     @DrawableRes icon: Int,
-    @StringRes label: Int,
+    label: String,
     containerColor: Color,
     contentColor: Color,
     iconColor: Color,
@@ -48,7 +49,7 @@ fun ButtonWithIconComponent(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
-            modifier = modifier.padding(vertical = 12.dp, horizontal = 16.dp),
+            modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp, horizontal = 16.dp),
         ) {
             Icon(
                 painter = painterResource(icon),
@@ -60,7 +61,7 @@ fun ButtonWithIconComponent(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = stringResource(label),
+                text = label,
             )
         }
     }
