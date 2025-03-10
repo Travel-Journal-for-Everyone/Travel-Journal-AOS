@@ -1,5 +1,6 @@
 package com.tedmoon99.presentation
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,12 +15,16 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tedmoon99.presentation.common.components.button.ButtonWithIconComponent
 import com.tedmoon99.presentation.common.theme.Black
+import com.tedmoon99.presentation.common.theme.Gray05
 import com.tedmoon99.presentation.common.theme.Kakao_Yellow
+import com.tedmoon99.presentation.common.theme.White
 
 @Composable
 fun LogInScreen(
@@ -57,7 +62,7 @@ fun LogInScreen(
                     textAlign = TextAlign.Center,
                     fontSize = 12.sp,
                     modifier = Modifier.fillMaxWidth()
-                    )
+                )
             }
 
             // 카카오
@@ -65,14 +70,54 @@ fun LogInScreen(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 ButtonWithIconComponent(
-                    icon = R.drawable.image_kakao,
-                    label = R.string.kakao_login,
+                    icon = R.drawable.logo_kakao,
+                    label = stringResource(R.string.message_login, "카카오"),
                     containerColor = Kakao_Yellow,
                     contentColor = Black,
                     iconColor = Black,
                     buttonShape = RoundedCornerShape(8.dp),
                     enabled = true,
                     modifier = Modifier.fillMaxWidth(),
+                    onClick = {
+
+                    }
+                )
+            }
+
+            // Apple
+            item {
+                Spacer(modifier = Modifier.height(10.dp))
+
+                ButtonWithIconComponent(
+                    icon = R.drawable.logo_apple,
+                    label = stringResource(R.string.message_login, "Apple"),
+                    containerColor = Black,
+                    contentColor = White,
+                    iconColor = White,
+                    buttonShape = RoundedCornerShape(8.dp),
+                    enabled = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {
+
+                    }
+                )
+            }
+
+            // Google
+            item {
+                Spacer(modifier = Modifier.height(10.dp))
+
+                ButtonWithIconComponent(
+                    icon = R.drawable.logo_google,
+                    label = stringResource(R.string.message_login, "Google"),
+                    containerColor = White,
+                    contentColor = Black,
+                    iconColor = Color.Unspecified,
+                    buttonShape = RoundedCornerShape(8.dp),
+                    enabled = true,
+                    modifier = Modifier
+                        .border(1.dp, Gray05, RoundedCornerShape(8.dp))
+                        .fillMaxWidth(),
                     onClick = {
 
                     }
