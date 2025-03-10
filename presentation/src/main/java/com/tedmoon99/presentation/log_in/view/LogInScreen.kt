@@ -1,0 +1,143 @@
+package com.tedmoon99.presentation.log_in.view
+
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.tedmoon99.presentation.R
+import com.tedmoon99.presentation.common.components.button.ButtonWithIconComponent
+import com.tedmoon99.presentation.common.theme.Black
+import com.tedmoon99.presentation.common.theme.Gray05
+import com.tedmoon99.presentation.common.theme.Kakao_Yellow
+import com.tedmoon99.presentation.common.theme.White
+import com.tedmoon99.presentation.log_in.viewmodel.LogInViewModel
+
+@Composable
+fun LogInScreen(
+    viewModel: LogInViewModel = hiltViewModel(),
+) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+
+    Scaffold(
+        modifier = Modifier.fillMaxSize()
+    ) { innerPadding ->
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            if (!state.isLoading) {
+                LazyColumn(
+                    contentPadding = PaddingValues(16.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                ) {
+
+                    // 공지글
+                    item {
+                        Spacer(modifier = Modifier.height(140.dp))
+
+                        Text(
+                            text = "모두의 여행 일지와 함께\n" +
+                                    "나만의 여행 일기를\n" +
+                                    "만들어 보세요!",
+                            style = MaterialTheme.typography.titleLarge
+                        )
+                    }
+
+                    // 로그인 / 회원가입
+                    item {
+                        Spacer(modifier = Modifier.height(360.dp))
+
+                        Text(
+                            text = "로그인/회원가입",
+                            textAlign = TextAlign.Center,
+                            fontSize = 12.sp,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+
+                    // Kakao
+                    item {
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        ButtonWithIconComponent(
+                            icon = R.drawable.logo_kakao,
+                            label = stringResource(R.string.message_login, "카카오"),
+                            containerColor = Kakao_Yellow,
+                            contentColor = Black,
+                            iconColor = Black,
+                            buttonShape = RoundedCornerShape(8.dp),
+                            enabled = true,
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = {
+                                viewModel.triggerKakaoLogIn()
+                            }
+                        )
+                    }
+                    // Apple
+                    item {
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        ButtonWithIconComponent(
+                            icon = R.drawable.logo_apple,
+                            label = stringResource(R.string.message_login, "Apple"),
+                            containerColor = Black,
+                            contentColor = White,
+                            iconColor = White,
+                            buttonShape = RoundedCornerShape(8.dp),
+                            enabled = true,
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = {
+
+                            }
+                        )
+                    }
+                    // Google
+                    item {
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        ButtonWithIconComponent(
+                            icon = R.drawable.logo_google,
+                            label = stringResource(R.string.message_login, "Google"),
+                            containerColor = White,
+                            contentColor = Black,
+                            iconColor = Color.Unspecified,
+                            buttonShape = RoundedCornerShape(8.dp),
+                            enabled = true,
+                            modifier = Modifier
+                                .border(1.dp, Gray05, RoundedCornerShape(8.dp))
+                                .fillMaxWidth(),
+                            onClick = {
+
+                            }
+                        )
+                    }
+                }
+            } else {
+                CircularProgressIndicator()
+            }
+        }
+    }
+}
