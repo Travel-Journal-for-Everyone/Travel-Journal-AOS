@@ -46,13 +46,7 @@ class LogInViewModel @Inject constructor(
             val result = kakaoUseCase.requestKakaoSignIn()
             setState(currentState.copy(isLoading = false))
             if (result.success) {
-                if (result.isFirstLogin) {
-                    // 프로필 작성 화면으로 이동
-                    setEffect(LogInContract.Effect.NavigateToWriteProfile)
-                } else {
-                    // 홈으로 이동
-                    setEffect(LogInContract.Effect.NavigateToHome)
-                }
+                setEffect(LogInContract.Effect.NavigateToHome)
             } else {
                 setEffect(LogInContract.Effect.ShowErrorMessage)
             }
