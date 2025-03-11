@@ -18,7 +18,6 @@ object LogInContract {
     ) : UiState
 
     sealed class Effect : UiEffect {
-        data object NavigateToWriteProfile: Effect()
         data object NavigateToHome: Effect()
         data object ShowErrorMessage : Effect()
     }
