@@ -1,4 +1,4 @@
-package com.tedmoon99.presentation.home
+package com.tedmoon99.presentation.home.view
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
