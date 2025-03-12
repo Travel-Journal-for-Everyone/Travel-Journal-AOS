@@ -3,4 +3,8 @@
     <string name="message_login">%s로 로그인</string>
     <string name="topbar_image_leadingIcon">Leading Icon</string>
     <string name="topbar_image_trailingIcon">Trailing Icon</string>
+    <string name="label_write_complete">작성 완료</string>
+    <string name="label_double_check">중복 확인</string>
+    <string name="placeholder_input">%s을 입력하세요 (%d~%d자)</string>
+    <string name="error_message_name">이미 사용중인 이름입니다</string>
 </resources>

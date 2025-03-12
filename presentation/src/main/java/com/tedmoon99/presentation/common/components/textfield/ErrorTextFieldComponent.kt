@@ -1,5 +1,6 @@
 package com.tedmoon99.presentation.common.components.textfield
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -10,6 +11,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.tedmoon99.presentation.common.theme.Gray06
@@ -18,7 +20,7 @@ import com.tedmoon99.presentation.common.theme.Gray06
 fun ErrorTextFieldComponent(
     inputText: String,
     placeHolder: String,
-    errorMessage: String?,
+    @StringRes errorMessage: Int,
     modifier: Modifier = Modifier,
     cornerShape: RoundedCornerShape = RoundedCornerShape(0.dp),
     keyboardOptions: KeyboardOptions,
@@ -33,9 +35,7 @@ fun ErrorTextFieldComponent(
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Gray06,
             focusedContainerColor = Gray06,
-            errorContainerColor = Gray06,
             focusedIndicatorColor = Color.Transparent,
-            errorIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
         ),
         placeholder = {
@@ -48,7 +48,7 @@ fun ErrorTextFieldComponent(
         supportingText = {
             if (isError) {
                 Text(
-                    text = errorMessage?: "",
+                    text = stringResource(errorMessage),
                     modifier = Modifier.padding(start = 4.dp)
                 )
             }
