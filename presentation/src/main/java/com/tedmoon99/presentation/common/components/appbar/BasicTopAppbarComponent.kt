@@ -19,9 +19,9 @@ fun BasicTopAppbarComponent(
     title: String,
     @DrawableRes leadingIcon: Int,
     @DrawableRes trailingIcon: Int,
+    modifier: Modifier = Modifier,
     showLeadingIcon: Boolean = false,
     showTrailingIcon: Boolean = false,
-    modifier: Modifier = Modifier,
     onClickLeadingIcon: (() -> Unit)? = null,
     onClickTrailingIcon: (() -> Unit)? = null,
 ) {
