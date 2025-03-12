@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.tedmoon99.presentation.log_in.view.LogInScreen
-import com.tedmoon99.presentation.home.HomeScreen
+import com.tedmoon99.presentation.home.view.HomeScreen
 import com.tedmoon99.presentation.common.screen.Screen
 
 @Composable
