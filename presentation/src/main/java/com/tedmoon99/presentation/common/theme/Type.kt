@@ -79,4 +79,12 @@ val Typography = Typography(
         lineHeight = 12.sp,
         letterSpacing = 0.5.sp
     ),
+
+    displayMedium = TextStyle(
+        fontFamily = Pretendard,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 12.sp,
+        letterSpacing = 0.5.sp
+    )
 )
