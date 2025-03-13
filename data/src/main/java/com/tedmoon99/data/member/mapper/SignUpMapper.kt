@@ -1,37 +1,23 @@
 package com.tedmoon99.data.member.mapper
 
-import com.tedmoon99.data.member.model.SignUpDto
-import com.tedmoon99.data.member.model.SignUpResult
-import com.tedmoon99.domain.member.entity.SignUpDtoEntity
-import com.tedmoon99.domain.member.entity.SignUpResultEntity
+import com.tedmoon99.data.member.model.DuplicatedCheckResult
+import com.tedmoon99.domain.member.entity.DuplicatedCheckResultEntity
 
 object SignUpMapper {
 
-    fun fromDomain(domain: SignUpDtoEntity): SignUpDto {
-        return SignUpDto(
-            nickname = domain.nickname,
-            accountScope = domain.accountScope
-        )
-    }
-
-    fun toDomain(data: SignUpDto): SignUpDtoEntity {
-        return SignUpDtoEntity(
-            nickname = data.nickname,
-            accountScope = data.accountScope
-        )
-    }
-
-    fun resultFromDomain(domain: SignUpResultEntity): SignUpResult {
-        return SignUpResult(
+    fun fromDomain(domain: DuplicatedCheckResultEntity): DuplicatedCheckResult {
+        return DuplicatedCheckResult(
             success = domain.success,
-            message = domain.message
+            isDuplicated = domain.isDuplicated,
+            isBadWorld = domain.isBadWorld
         )
     }
 
-    fun resultToDomain(data: SignUpResult): SignUpResultEntity {
-        return SignUpResultEntity(
+    fun toDomain(data: DuplicatedCheckResult): DuplicatedCheckResultEntity {
+        return DuplicatedCheckResultEntity(
             success = data.success,
-            message = data.message
+            isDuplicated = data.isDuplicated,
+            isBadWorld = data.isBadWorld
         )
     }
 }
