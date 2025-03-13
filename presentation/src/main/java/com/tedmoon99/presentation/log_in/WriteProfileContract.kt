@@ -25,10 +25,9 @@ object WriteProfileContract {
 
     sealed class Effect : UiEffect {
         data object NavigateToHome: Effect()
+        data object ShowErrorMessage: Effect()
         data object ShowSuccessMessage: Effect()
-        data object ShowCompleteFailedMessage: Effect()
-        data object ShowDuplicatedErrorMessage: Effect()
-        data object ShowBadWordErrorMessage: Effect()
+
     }
 
 }
