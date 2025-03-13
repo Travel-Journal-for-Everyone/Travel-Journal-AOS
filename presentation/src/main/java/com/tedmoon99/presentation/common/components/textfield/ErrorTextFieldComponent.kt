@@ -35,7 +35,9 @@ fun ErrorTextFieldComponent(
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Gray06,
             focusedContainerColor = Gray06,
+            errorContainerColor = Gray06,
             focusedIndicatorColor = Color.Transparent,
+            errorIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
         ),
         placeholder = {
