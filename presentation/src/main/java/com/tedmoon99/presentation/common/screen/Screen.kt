@@ -7,4 +7,6 @@ sealed class Screen(
 
     data object LogIn: Screen("LogIn")
 
+    data object WriteProfile: Screen("WriteProfile")
+
 }
