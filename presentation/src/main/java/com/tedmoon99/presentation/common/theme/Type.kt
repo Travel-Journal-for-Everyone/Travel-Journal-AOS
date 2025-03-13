@@ -86,5 +86,13 @@ val Typography = Typography(
         fontSize = 16.sp,
         lineHeight = 12.sp,
         letterSpacing = 0.5.sp
+    ),
+
+    displaySmall = TextStyle(
+        fontFamily = Pretendard,
+        fontWeight = FontWeight.Thin,
+        fontSize = 12.sp,
+        lineHeight = 12.sp,
+        letterSpacing = 0.5.sp
     )
 )
