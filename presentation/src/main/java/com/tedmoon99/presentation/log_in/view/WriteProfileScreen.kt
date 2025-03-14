@@ -76,7 +76,7 @@ import kotlinx.coroutines.launch
 fun WriteProfileScreen(
     hostState: SnackbarHostState,
     viewModel: WriteProfileViewModel = hiltViewModel(),
-    navigateToWelcome: () -> Unit,
+    navigateToWelcome: (String) -> Unit,
 ) {
 
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -93,7 +93,7 @@ fun WriteProfileScreen(
             when (effect) {
                 is WriteProfileContract.Effect.NavigateToHome -> {
                     // 웰컴 페이지로 이동
-                    navigateToWelcome()
+                    navigateToWelcome(state.name)
                 }
 
                 is WriteProfileContract.Effect.ShowCompleteFailedMessage -> {
