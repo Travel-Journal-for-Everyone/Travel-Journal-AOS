@@ -41,7 +41,8 @@ import com.tedmoon99.presentation.log_in.viewmodel.LogInViewModel
 fun LogInScreen(
     hostState: SnackbarHostState,
     viewModel: LogInViewModel = hiltViewModel(),
-    onLogInSuccess: () -> Unit,
+    navigateToWriteProfile: () -> Unit,
+    navigateToHome: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val effectFlow = viewModel.effect
@@ -50,7 +51,11 @@ fun LogInScreen(
         effectFlow.collect { effect ->
             when (effect) {
                 is LogInContract.Effect.NavigateToHome -> {
-                    onLogInSuccess()
+                    navigateToHome()
+                }
+
+                is LogInContract.Effect.NavigateToWriteProfile -> {
+                    navigateToWriteProfile()
                 }
 
                 is LogInContract.Effect.ShowErrorMessage -> {
