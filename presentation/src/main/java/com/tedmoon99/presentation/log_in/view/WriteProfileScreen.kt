@@ -76,7 +76,7 @@ import kotlinx.coroutines.launch
 fun WriteProfileScreen(
     hostState: SnackbarHostState,
     viewModel: WriteProfileViewModel = hiltViewModel(),
-    navigateToHome: () -> Unit,
+    navigateToWelcome: () -> Unit,
 ) {
 
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -92,13 +92,29 @@ fun WriteProfileScreen(
         effectFlow.collect { effect ->
             when (effect) {
                 is WriteProfileContract.Effect.NavigateToHome -> {
-                    // 홈 화면으로 이동
-                    navigateToHome()
+                    // 웰컴 페이지로 이동
+                    navigateToWelcome()
                 }
 
-                is WriteProfileContract.Effect.ShowErrorMessage -> {
+                is WriteProfileContract.Effect.ShowCompleteFailedMessage -> {
                     hostState.showSnackbar(
                         message = "회원가입 실패. 관리자에게 문의하세요.",
+                        withDismissAction = true,
+                        duration = SnackbarDuration.Short
+                    )
+                }
+
+                is WriteProfileContract.Effect.ShowDuplicatedErrorMessage -> {
+                    hostState.showSnackbar(
+                        message = "이미 사용중인 아이디입니다.",
+                        withDismissAction = true,
+                        duration = SnackbarDuration.Short
+                    )
+                }
+
+                is WriteProfileContract.Effect.ShowBadWordErrorMessage -> {
+                    hostState.showSnackbar(
+                        message = "부적절한 단어가 포함되어 있습니다",
                         withDismissAction = true,
                         duration = SnackbarDuration.Short
                     )
@@ -140,6 +156,7 @@ fun WriteProfileScreen(
                         .fillMaxWidth()
                         .padding(vertical = 12.dp, horizontal = 16.dp),
                     onClick = {
+                        viewModel.triggerSignUpComplete()
                         keyboardController?.hide() // 키보드 닫기
                     },
                 )
