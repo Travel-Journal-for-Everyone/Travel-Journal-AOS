@@ -31,7 +31,7 @@ object MemberModule {
 
     @Provides
     @Singleton
-    fun providerSignUpService(@NetworkModule.AuthClient retrofit: Retrofit): SignUpService =
+    fun providerSignUpService(@NetworkModule.BaseClient retrofit: Retrofit): SignUpService =
         retrofit.create()
 
     @Provides
