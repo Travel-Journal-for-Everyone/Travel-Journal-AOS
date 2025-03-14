@@ -2,6 +2,8 @@ package com.tedmoon99.presentation.log_in.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.tedmoon99.domain.member.entity.DuplicatedCheckResultEntity
+import com.tedmoon99.domain.member.usecase.SignUpUseCase
 import com.tedmoon99.presentation.common.viewmodel.BaseViewModel
 import com.tedmoon99.presentation.log_in.WriteProfileContract
 import com.tedmoon99.presentation.log_in.utils.Scope
@@ -12,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WriteProfileViewModel @Inject constructor(
-
+    private val signUpUseCase: SignUpUseCase,
 ) : BaseViewModel<WriteProfileContract.Event, WriteProfileContract.State, WriteProfileContract.Effect>() {
 
     override fun createInitialState(): WriteProfileContract.State {
@@ -48,6 +50,11 @@ class WriteProfileViewModel @Inject constructor(
         }
     }
 
+    fun triggerSignUpComplete() {
+        requestSignUpComplete() // 회원가입 완료 요청
+        setEffect(WriteProfileContract.Effect.NavigateToHome)
+    }
+
     fun triggerNameCheck(name: String) {
         setState(currentState.copy(name = name))
         setEvent(WriteProfileContract.Event.NameEntered)
@@ -58,16 +65,49 @@ class WriteProfileViewModel @Inject constructor(
         setEvent(WriteProfileContract.Event.DoubleCheckClicked)
     }
 
+    private fun requestSignUpComplete() {
+        viewModelScope.launch {
+            val name = currentState.name
+            val scope = when(currentState.scope){
+                Scope.PUBLIC_SCOPE -> { "PUBLIC" }
+                Scope.ONLY_FOLLOW_SCOPE -> { "FRIENDS" }
+                Scope.PRIVATE_SCOPE -> { "PRIVATE" }
+            }
+            val result = signUpUseCase.completeSignUp(name, scope)
+            if (result.success) {
+                setEffect(WriteProfileContract.Effect.NavigateToHome)
+            } else {
+                setEffect(WriteProfileContract.Effect.ShowCompleteFailedMessage)
+            }
+        }
+    }
+
     private fun isNotDuplicatedName() {
         viewModelScope.launch {
             setState(currentState.copy(isLoading = true))
             // 서버에 중복 확인 요청
-            val isNotDuplicate = true
+            val result = signUpUseCase.checkDuplicatedName(currentState.name)
+            val isNotDuplicate = handleDuplicate(result)
             setState(currentState.copy(isLoading = false))
             // 상태 update
             setState(currentState.copy(isNotDuplicatedName = isNotDuplicate))
-            if (isNotDuplicate) setEffect(WriteProfileContract.Effect.ShowSuccessMessage) // 성공 메시지 전달
         }
+    }
+
+    private fun handleDuplicate(result: DuplicatedCheckResultEntity): Boolean {
+        if (result.success){
+            setEffect(WriteProfileContract.Effect.ShowSuccessMessage)
+            return true
+        }
+        if (result.isDuplicated){
+            setEffect(WriteProfileContract.Effect.ShowDuplicatedErrorMessage)
+            return false
+        }
+        if (result.isBadWorld){
+            setEffect(WriteProfileContract.Effect.ShowBadWordErrorMessage)
+            return false
+        }
+        return false
     }
 
     private fun isValidateNickName() {
