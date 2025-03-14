@@ -9,4 +9,6 @@ sealed class Screen(
 
     data object WriteProfile: Screen("WriteProfile")
 
+    data object Welcome: Screen("Welcome/{name}")
+
 }
