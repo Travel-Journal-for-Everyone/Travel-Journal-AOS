@@ -1,6 +1,5 @@
 package com.tedmoon99.data.member.datasource
 
-import com.tedmoon99.data.member.model.DuplicatedCheckResponse
 import com.tedmoon99.data.member.model.SignUpDto
 import com.tedmoon99.data.member.model.SignUpResult
 import retrofit2.Response
@@ -14,7 +13,7 @@ interface SignUpService {
     @GET("v1/member/check-nickname/{nickname}")
     suspend fun checkDuplicatedName(
         @Path("nickname") name: String,
-    ): Response<DuplicatedCheckResponse>
+    ): Response<Unit>
 
     @POST("v1/member/complete-first-login")
     suspend fun completeSignUp(
