@@ -29,13 +29,10 @@ class SignUpRepositoryImpl @Inject constructor(
 
             409 -> {
                 Log.d(TAG, "닉네임 중복체크 실패: ${response.body()}")
-                Log.d(TAG, "닉네임 중복체크 실패: ${response.body()?.success}")
-                Log.d(TAG, "닉네임 중복체크 실패: ${response.body()?.message}")
-                val responseBody = response.body()
                 DuplicatedCheckResult(
-                    success = responseBody?.success ?: false,
-                    isDuplicated = responseBody?.message == DUPLICATED,
-                    isBadWorld = responseBody?.message == CONTAINS_BAD_WORLD
+                    success = false,
+                    isDuplicated = true,
+                    isBadWorld = true
                 )
             }
 
