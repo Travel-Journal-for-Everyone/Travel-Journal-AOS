@@ -27,6 +27,8 @@ material3Android = "1.3.1"
 uiToolingPreview = "1.7.8"
 junitKtx = "1.2.1"
 dagger = "2.55"
+coilCompose = "3.1.0"
+coilNetworkOkhttp = "3.1.0"
 
 
 [libraries]
@@ -67,6 +69,8 @@ squareup-converter-gson = { module = "com.squareup.retrofit2:converter-gson", ve
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilNetworkOkhttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
