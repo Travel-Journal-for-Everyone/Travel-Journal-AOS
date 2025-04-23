@@ -16,9 +16,16 @@ kotlin {
 }
 
 dependencies {
+    val paging_version = "3.3.6"
+
     // Dagger Core (순수 Kotlin 모듈에서 Dagger 사용)
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
 
     // Kotlin Coroutines (비동기 처리)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+    // Paging 라이브러리
+    implementation("androidx.paging:paging-common:$paging_version")
+
 }

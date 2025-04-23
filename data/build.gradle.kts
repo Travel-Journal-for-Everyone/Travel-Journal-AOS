@@ -45,9 +45,11 @@ android {
 }
 
 dependencies {
+    val paging_version = "3.3.6"
 
     // testImplementation
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.paging.common) // Paging 라이브러리
 
     // androidTestImplementation
     androidTestImplementation(libs.androidx.junit)
@@ -68,4 +70,6 @@ dependencies {
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.androidx.junit.ktx)
     implementation("com.kakao.sdk:v2-all:2.20.6") // 전체 모듈 설치 (로그인, 공유, 메시지, 피커, 내비, 인증)
+    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation("androidx.paging:paging-compose:3.3.6")
 }
