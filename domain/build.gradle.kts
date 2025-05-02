@@ -23,7 +23,7 @@ dependencies {
     ksp(libs.dagger.compiler)
 
     // Kotlin Coroutines (비동기 처리)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     // Paging 라이브러리
     implementation("androidx.paging:paging-common:$paging_version")
