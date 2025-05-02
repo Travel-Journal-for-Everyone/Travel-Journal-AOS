@@ -46,6 +46,7 @@ android {
 
 dependencies {
     val paging_version = "3.3.6"
+    val datastore_version = "1.1.4"
 
     // testImplementation
     testImplementation(libs.junit)
@@ -63,8 +64,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(project(":domain"))
-    implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.datastore.preferences.core)
+    implementation("androidx.datastore:datastore-preferences:$datastore_version")
     implementation(libs.retrofit)
     implementation(libs.squareup.converter.gson)
     implementation(libs.okhttp3.logging.interceptor)
