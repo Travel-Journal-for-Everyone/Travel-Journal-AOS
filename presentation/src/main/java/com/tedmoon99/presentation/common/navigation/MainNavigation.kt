@@ -9,16 +9,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.tedmoon99.presentation.log_in.view.LogInScreen
-import com.tedmoon99.presentation.home.view.HomeScreen
 import com.tedmoon99.presentation.common.screen.Screen
+import com.tedmoon99.presentation.home.view.HomeScreen
+import com.tedmoon99.presentation.log_in.view.LogInScreen
 import com.tedmoon99.presentation.log_in.view.WelcomeScreen
 import com.tedmoon99.presentation.log_in.view.WriteProfileScreen
+import com.tedmoon99.presentation.search.view.SearchInputScreen
+import com.tedmoon99.presentation.search.view.SearchScreen
 
 @Composable
 fun MainNavigation() {
     val navController = rememberNavController()
-    val snackbarHostState = SnackbarHostState()
+    val snackBarHostState = SnackbarHostState()
 
     NavHost(
         navController = navController,
@@ -28,8 +30,8 @@ fun MainNavigation() {
         composable(
             route = Screen.Home.route,
             enterTransition = { slideInHorizontally() },
-            exitTransition = { slideOutHorizontally() }
-        ){
+            exitTransition = { slideOutHorizontally() },
+        ) {
             HomeScreen()
         }
 
@@ -37,11 +39,11 @@ fun MainNavigation() {
         composable(
             route = Screen.LogIn.route,
             exitTransition = { slideOutHorizontally() }
-        ){
+        ) {
             LogInScreen(
-                hostState = snackbarHostState,
+                hostState = snackBarHostState,
                 navigateToHome = {
-                    navController.navigate(Screen.Home.route){
+                    navController.navigate(Screen.Home.route) {
                         popUpTo(navController.graph.id) { inclusive = true }
                     }
                 },
@@ -56,14 +58,14 @@ fun MainNavigation() {
             route = Screen.WriteProfile.route,
             enterTransition = { slideInHorizontally() },
             exitTransition = { slideOutHorizontally() }
-        ){
+        ) {
             WriteProfileScreen(
-                hostState = snackbarHostState,
+                hostState = snackBarHostState,
                 navigateToWelcome = { name ->
                     // Welcome 페이지로 이동
                     navController.navigate(
                         Screen.Welcome.route.replace("{name}", name)
-                    ){
+                    ) {
                         popUpTo(navController.graph.id) { inclusive = true }
                     }
                 }
@@ -78,16 +80,60 @@ fun MainNavigation() {
             ),
             enterTransition = { slideInHorizontally() },
             exitTransition = { slideOutHorizontally() }
-        ){ navBackStackEntry ->
+        ) { navBackStackEntry ->
             val name = navBackStackEntry.arguments?.getString("name") ?: ""
 
             WelcomeScreen(
                 name = name,
                 navigateToHome = {
-                    navController.navigate(Screen.Home.route){
-                        popUpTo(navController.graph.id){ inclusive = true }
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(navController.graph.id) { inclusive = true }
                     }
                 }
+            )
+        }
+
+        // Search
+        composable(
+            route = Screen.Search.route,
+            enterTransition = { slideInHorizontally() },
+            exitTransition = { slideOutHorizontally() }
+        ) { navBackStackEntry ->
+
+            val savedStateHandle = navBackStackEntry.savedStateHandle
+            val keywordFlow = savedStateHandle.getStateFlow("keyword", "")
+
+            SearchScreen(
+                hostState = snackBarHostState,
+                keywordFlow = keywordFlow,
+                navigateToSearchInput = { keyword ->
+                    // 키워드 저장
+                    navController.currentBackStackEntry?.savedStateHandle?.set("keyword", keyword)
+                    // 화면 전환
+                    navController.navigate(Screen.SearchInput.route)
+
+                },
+                navigateToDiaryItemDetail = { diaryId ->
+
+                },
+                navigateToUserItemDetail = { memberId ->
+
+                },
+                navigateToPlaceItemDetail = { placeId ->
+
+                }
+            )
+        }
+
+        // SearchInput
+        composable(Screen.SearchInput.route){ navBackStackEntry ->
+
+            SearchInputScreen(
+                hostState = snackBarHostState,
+                navigateToSearch = { keyword ->
+                    navController.previousBackStackEntry?.savedStateHandle?.set("keyword",keyword)
+                    navController.popBackStack()
+                },
             )
         }
     }
