@@ -44,7 +44,7 @@ dependencies {
     val paging_version = "3.3.6"
 
     // debugImplementation
-    debugImplementation("androidx.compose.ui:ui-tooling:1.7.8")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.8.0")
     // testImplementation
     testImplementation(libs.junit)
     testImplementation("androidx.paging:paging-common:$paging_version")
@@ -71,4 +71,5 @@ dependencies {
     implementation("com.google.accompanist:accompanist-navigation-animation:0.33.2-alpha")
     implementation("androidx.paging:paging-runtime:$paging_version")
     implementation("androidx.paging:paging-compose:$paging_version")
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }
