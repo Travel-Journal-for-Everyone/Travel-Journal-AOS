@@ -15,6 +15,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.create
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +25,7 @@ object MemberModule {
     @Provides
     @Singleton
     fun provideMemberRepository(
-        dataStore: DataStore<Preferences>,
+        @Named("user_prefs") dataStore: DataStore<Preferences>,
     ): MemberRepository {
         return MemberRepositoryImpl(dataStore)
     }
