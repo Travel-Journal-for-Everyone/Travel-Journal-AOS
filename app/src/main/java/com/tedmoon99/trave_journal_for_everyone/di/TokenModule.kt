@@ -19,17 +19,19 @@ import okhttp3.Authenticator
 import okhttp3.Interceptor
 import retrofit2.Retrofit
 import retrofit2.create
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object TokenModule {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_prefs")
+    private val Context.tokenDataStore: DataStore<Preferences> by preferencesDataStore(name = "user_prefs")
 
     @Provides
     @Singleton
-    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> = context.dataStore
+    @Named("user_prefs")
+    fun provideUserDataStore(@ApplicationContext context: Context): DataStore<Preferences> = context.tokenDataStore
 
     @Provides
     @Singleton
@@ -37,7 +39,7 @@ object TokenModule {
 
     @Provides
     @Singleton
-    fun provideTokenRepository(dataStore: DataStore<Preferences>): TokenRepository = TokenRepositoryImpl(dataStore)
+    fun provideTokenRepository(@Named("user_prefs") dataStore: DataStore<Preferences>): TokenRepository = TokenRepositoryImpl(dataStore)
 
     @Provides
     @Singleton
