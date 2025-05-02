@@ -11,4 +11,8 @@ sealed class Screen(
 
     data object Welcome: Screen("Welcome/{name}")
 
+    data object Search: Screen("Search")
+
+    data object SearchInput: Screen("SearchInput")
+
 }
