@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.tedmoon99.data.common.paging.datasource.SearchUserPagingSource
+import com.tedmoon99.data.search.datasource.SearchUserPagingSource
 import com.tedmoon99.data.common.utils.CommonUtils.Companion.PAGING_SIZE
 import com.tedmoon99.data.search.datasource.SearchService
 import com.tedmoon99.data.search.mapper.SearchedUserMapper
