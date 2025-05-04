@@ -1,10 +1,9 @@
-package com.tedmoon99.data.common.paging.datasource
+package com.tedmoon99.data.search.datasource
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.tedmoon99.data.common.utils.CommonUtils.Companion.STARTING_PAGE
-import com.tedmoon99.data.search.datasource.SearchService
 import com.tedmoon99.data.search.mapper.SearchedUserMapper
 import com.tedmoon99.domain.search.model.SearchResultItem
 import retrofit2.HttpException
