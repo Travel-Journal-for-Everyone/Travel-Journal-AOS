@@ -12,8 +12,14 @@
     <string name="label_tab_diary">여행일지</string>
     <string name="label_tab_place">플레이스</string>
     <string name="label_tab_user">여행자</string>
+    <string name="label_tab_following">팔로잉 %d</string>
+    <string name="label_tab_follower">팔로워 %d</string>
     <string name="error_message">시스템 오류. 관리자에게 문의하세요.</string>
     <string name="text_remove_all">전체 삭제</string>
     <string name="text_recent_search">최근 검색어</string>
     <string name="placeholder_search">궁금한 여행지를 검색해보세요!</string>
+    <string name="title_follow">%s</string>
+    <string name="label_approve">수락</string>
+    <string name="label_deny">거절</string>
+    <string name="text_request">요청 (%s)</string>
 </resources>
