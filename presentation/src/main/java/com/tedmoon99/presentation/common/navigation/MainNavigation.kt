@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.tedmoon99.presentation.common.screen.Screen
+import com.tedmoon99.presentation.follow.view.FollowScreen
 import com.tedmoon99.presentation.home.view.HomeScreen
 import com.tedmoon99.presentation.log_in.view.LogInScreen
 import com.tedmoon99.presentation.log_in.view.WelcomeScreen
@@ -136,5 +137,19 @@ fun MainNavigation() {
                 },
             )
         }
+
+        // Follow
+        composable(Screen.Follow.route){navBackStackEntry  ->
+
+            FollowScreen(
+                navigateToBack = {
+                    navController.popBackStack()
+                },
+                navigateToOtherProfile = { memberId: Int ->
+                    TODO("다른 사용자의 프로필로 이동")
+                }
+            )
+        }
+
     }
 }
