@@ -15,4 +15,6 @@ sealed class Screen(
 
     data object SearchInput: Screen("SearchInput")
 
+    data object Follow: Screen("Follow")
+
 }
